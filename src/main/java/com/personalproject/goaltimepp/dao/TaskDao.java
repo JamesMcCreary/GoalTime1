@@ -8,7 +8,10 @@ public interface TaskDao {
 
     List<Task> getTasks(String userName) throws IllegalArgumentException;
     Task getTaskById(Long id);
-    void addTask(Task taskToAdd);
+    //    For use with $http in front-end
+    //    void addTask(Task taskToAdd);
+
+    Task addTask(Task taskToAdd);
     void updateTask(Task taskToUpdate);
     void archiveTask(Task taskToArchive);
 }

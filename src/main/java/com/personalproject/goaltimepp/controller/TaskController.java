@@ -21,13 +21,8 @@ public class TaskController {
     @Resource
     private TaskService taskService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testString() {
-        return "Great, I'll head over in a few!";
-    }
-
-    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/getTasks", method = RequestMethod.GET)
     public List<Task> getTasks() {
         String userName = "user1";
         return taskService.getTasks(userName);
@@ -39,11 +34,24 @@ public class TaskController {
         return taskService.getTaskById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/addTask", method = RequestMethod.POST)
-    @ResponseBody
-    public void addTask(@RequestBody Task taskToAdd) {
-        taskService.addTask(taskToAdd);
+    // For use with $http in front-end
+    //    public void addTask(@RequestBody Task taskToAdd) {
+    //        taskService.addTask(taskToAdd);
+    //    }
+
+    public Task addTask(@RequestBody Task taskToAdd) {
+        //        Task taskResponse = new Task(5L, "testTaskName5", "testTaskDescription5", "TestGoal5", 2, "Completed", new Date(),
+        //                new Date(), false, "user1");
+        //String response = "HELLO FROM THE BACKEND!";
+        return taskService.addTask(taskToAdd);
     }
+    //    public Task addTask() {
+    ////        Task taskToAdd = new Task(5L, "testTaskName5", "testTaskDescription5", "TestGoal5", 2, "Completed", new Date(),
+    ////                new Date(), false, "user1");
+    ////        return taskService.addTask(taskToAdd);
+    //    }
 
     @RequestMapping(value = "/updateTask", method = RequestMethod.POST)
     @ResponseBody

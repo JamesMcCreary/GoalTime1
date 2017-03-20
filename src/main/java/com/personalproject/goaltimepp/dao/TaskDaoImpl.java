@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//import org.hibernate.Query;
-//import org.hibernate.SessionFactory;
-//import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
 import com.personalproject.goaltimepp.domain.Task;
@@ -16,7 +13,7 @@ public class TaskDaoImpl implements TaskDao {
 
     //    @Resource
     //    private SessionFactory sessionFactory;
-
+    //
     //    @Resource
     //    private JdbcOperations jdbcOperations;
 
@@ -24,16 +21,17 @@ public class TaskDaoImpl implements TaskDao {
     @Override
     public List<Task> getTasks(String userName) throws IllegalArgumentException {
 
-        String sql = "SELECT *" +
+        String sqlWithoutArchived = "SELECT *" +
                 " FROM TASK_LIST" +
                 " WHERE USERNAME = :userName AND ARCHIVED = FALSE";
 
         List<Task> taskList = new ArrayList<Task>();
-        //        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql)
-        //        .addEntity(Task.class)
-        //        .setParameter("userName", userName);
 
-        //        taskList = query.list();
+        //        Query query = sessionFactory.getCurrentSession().createSQLQuery(sqlWithoutArchived)
+        //                .addEntity(Task.class)
+        //                .setParameter("userName", userName);
+
+        //        taskList =  query.list();
         return taskList;
 
 
@@ -104,8 +102,10 @@ public class TaskDaoImpl implements TaskDao {
     }
 
     @Override
-    public void addTask(Task taskToAdd) {
+    public Task addTask(Task taskToAdd) {
         //        sessionFactory.getCurrentSession().saveOrUpdate(taskToAdd);
+
+        return taskToAdd;
     }
 
     @Override

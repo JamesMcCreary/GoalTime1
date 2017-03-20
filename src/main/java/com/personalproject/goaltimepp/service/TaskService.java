@@ -9,7 +9,11 @@ public interface TaskService {
 
     List<Task> getTasks(String userName);
     Task getTaskById(Long id);
-    void addTask(Task taskToAdd);
+    // For use with $http from front-end
+    // void addTask(Task taskToAdd);
+
+    Task addTask(Task taskToAdd);
+
     void updateTask(Task taskToUpdate);
     void archiveTask(Task taskToArchive);
 }

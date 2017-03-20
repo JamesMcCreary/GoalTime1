@@ -2,45 +2,47 @@ package com.personalproject.goaltimepp.domain;
 
 import java.util.Date;
 
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-//@Entity
-//@Table(name = "TASK_LIST")
+@Entity
+@Table(name = "TASK_LIST")
 public class Task {
 
-    //    @Id
-    //    @Column(name = "ID")
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
-    //    @Column(name = "NAME")
+    @Column(name = "NAME")
     private String name;
 
-    //    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    //    @Column(name = "GOAL")
+    @Column(name = "GOAL")
     private String goal;
 
-    //    @Column(name = "PRIORITY")
+    @Column(name = "PRIORITY")
     private int priority;
 
-    //    @Column(name = "STATUS")
+    @Column(name = "STATUS")
     private String status;
 
-    //    @Column(name = "START_TIME")
+    @Column(name = "START_TIME")
     private Date startTime;
 
-    //    @Column(name = "END_TIME")
+    @Column(name = "END_TIME")
     private Date endTime;
 
-    //    @Column(name = "ARCHIVED")
+    @Column(name = "ARCHIVED")
     private Boolean archived;
 
-    //    @Column(name = "USERNAME")
+    @Column(name = "USER_NAME")
     private String userName;
 
     public Task() {
