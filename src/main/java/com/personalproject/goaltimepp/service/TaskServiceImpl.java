@@ -26,8 +26,8 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getTasks(String userName) {
         //        return taskDao.getTasks(userName);
 
-        //List<Task> results = taskJpaDao.findAll();
-        List<Task> results = taskDao.getTasks(userName);
+        List<Task> results = taskJpaDao.findAll();
+        //List<Task> results = taskDao.getTasks(userName);
         System.out.println(results);
         return results;
     }
