@@ -1,4 +1,4 @@
-package com.personalproject.goaltimepp.dao;
+package com.personalproject.goaltime1.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.personalproject.goaltimepp.domain.Task;
+import com.personalproject.goaltime1.domain.Task;
 
 @Repository("staticTasks")
 public class TaskStaticImpl implements TaskDao {

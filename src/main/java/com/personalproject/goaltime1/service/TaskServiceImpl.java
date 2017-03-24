@@ -1,4 +1,4 @@
-package com.personalproject.goaltimepp.service;
+package com.personalproject.goaltime1.service;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.personalproject.goaltimepp.dao.TaskDao;
-import com.personalproject.goaltimepp.dao.TaskJPADao;
-import com.personalproject.goaltimepp.domain.Task;
+import com.personalproject.goaltime1.dao.TaskDao;
+import com.personalproject.goaltime1.dao.TaskJPADao;
+import com.personalproject.goaltime1.domain.Task;
 
 @Service("taskService")
 //@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)

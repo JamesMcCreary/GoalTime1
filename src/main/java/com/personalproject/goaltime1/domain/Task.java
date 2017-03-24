@@ -1,4 +1,4 @@
-package com.personalproject.goaltimepp.domain;
+package com.personalproject.goaltime1.domain;
 
 import java.util.Date;
 

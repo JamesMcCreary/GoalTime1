@@ -1,14 +1,17 @@
-package com.personalproject;
+package com.personalproject.goaltime1;
 
 import javax.persistence.EntityManagerFactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 
 @SpringBootApplication
-//@Configuration
+@Configuration
+@ComponentScan
 public class GoalTime1Application {
 
     public static void main(String[] args) {
@@ -21,6 +24,5 @@ public class GoalTime1Application {
         factory.setEntityManagerFactory(emf);
         return factory;
     }
-
 
 }

@@ -1,9 +1,10 @@
-package com.personalproject.goaltimepp.controller;
+package com.personalproject.goaltime1.controller;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.personalproject.goaltimepp.domain.Task;
-import com.personalproject.goaltimepp.service.TaskService;
+import com.personalproject.goaltime1.domain.Task;
+import com.personalproject.goaltime1.domain.User;
+import com.personalproject.goaltime1.service.TaskService;
+import com.personalproject.goaltime1.service.UserService;
 
 @RestController
 public class TaskController {
@@ -21,10 +24,16 @@ public class TaskController {
     @Resource
     private TaskService taskService;
 
+    @Autowired
+    UserService userService;
+
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/getTasks", method = RequestMethod.GET)
     public List<Task> getTasks() {
         String userName = "user1";
+        User user = new User("user1","password1");
+        userService.saveUser(user);
+
         return taskService.getTasks(userName);
     }
 

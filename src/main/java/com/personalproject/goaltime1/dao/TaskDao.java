@@ -1,8 +1,8 @@
-package com.personalproject.goaltimepp.dao;
+package com.personalproject.goaltime1.dao;
 
 import java.util.List;
 
-import com.personalproject.goaltimepp.domain.Task;
+import com.personalproject.goaltime1.domain.Task;
 
 public interface TaskDao {
 
