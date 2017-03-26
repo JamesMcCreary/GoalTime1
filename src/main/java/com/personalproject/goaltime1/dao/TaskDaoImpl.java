@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.personalproject.goaltime1.domain.Task;
@@ -11,8 +15,8 @@ import com.personalproject.goaltime1.domain.Task;
 @Repository("taskDao")
 public class TaskDaoImpl implements TaskDao {
 
-    //    @Resource
-    //    private SessionFactory sessionFactory;
+    @Resource
+    private SessionFactory sessionFactory;
     //
     //    @Resource
     //    private JdbcOperations jdbcOperations;
@@ -27,11 +31,11 @@ public class TaskDaoImpl implements TaskDao {
 
         List<Task> taskList = new ArrayList<Task>();
 
-        //        Query query = sessionFactory.getCurrentSession().createSQLQuery(sqlWithoutArchived)
-        //                .addEntity(Task.class)
-        //                .setParameter("userName", userName);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sqlWithoutArchived)
+                .addEntity(Task.class)
+                .setParameter("userName", userName);
 
-        //        taskList =  query.list();
+        taskList =  query.list();
         return taskList;
 
 

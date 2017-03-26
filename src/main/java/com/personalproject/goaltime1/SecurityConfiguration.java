@@ -51,20 +51,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.
-        jdbcAuthentication()
-        .usersByUsernameQuery(usersQuery)
-        .authoritiesByUsernameQuery(rolesQuery)
-        .dataSource(dataSource)
-        .passwordEncoder(bCryptPasswordEncoder);
+        jdbcAuthentication().dataSource(dataSource)
+        .usersByUsernameQuery("select username,password, enabled from users where username=?")
+        .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+
+        ////.usersByUsernameQuery(usersQuery)
+        // .usersByUsernameQuery("select username, password, active from users where username=?")
+        ////.authoritiesByUsernameQuery(rolesQuery)
+        //.authoritiesByUsernameQuery("select username, role from user_roles where username=?")
+        //.dataSource(dataSource);
+        //.passwordEncoder(bCryptPasswordEncoder);
+
+        //        FROM http://www.java2blog.com/2016/09/spring-security-database-authentication-example.html
+        //        users-by-username-query="select username, password, active from users where username=?"
+        //                authorities-by-username-query="select username, role from user_roles where username=?" />
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.
-        authorizeRequests()
+        http.httpBasic().and()
+        .authorizeRequests()
         .antMatchers("/").permitAll()
-        .antMatchers("/**").permitAll();
+        .antMatchers("/home").permitAll()
+        .antMatchers("/signup").permitAll()
+        .antMatchers("/signin").permitAll()
+        .antMatchers("/addTask").hasRole("USER")
+        .antMatchers("/taskList").access("hasRole('ROLE_USER')")
+        .and().csrf().disable();
+
+
         //                .antMatchers("/login").permitAll()
         //                .antMatchers("/registration").permitAll()
         //                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()

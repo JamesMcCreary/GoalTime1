@@ -28,7 +28,7 @@ public class TaskController {
     UserService userService;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/getTasks", method = RequestMethod.GET)
+    @RequestMapping(value = "/taskList", method = RequestMethod.GET)
     public List<Task> getTasks() {
         String userName = "user1";
         User user = new User("user1","password1");

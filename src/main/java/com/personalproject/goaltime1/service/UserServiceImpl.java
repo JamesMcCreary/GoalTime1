@@ -28,11 +28,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         String password = user.getPassword();
-        System.out.println(password);;
+        System.out.println(password);
         String encryptedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         System.out.println(encryptedPassword);
-        //user.setPassword(user.getPassword());
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
+        //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(roleRepository.findAll()));
         System.out.println(new HashSet<>(roleRepository.findAll()));
         userRepository.save(user);
