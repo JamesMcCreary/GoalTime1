@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.personalproject.goaltime1.domain.Task;
-import com.personalproject.goaltime1.domain.User;
 import com.personalproject.goaltime1.service.TaskService;
 import com.personalproject.goaltime1.service.UserService;
 
 @RestController
+@CrossOrigin
 public class TaskController {
 
     @Resource
@@ -27,12 +27,13 @@ public class TaskController {
     @Autowired
     UserService userService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/taskList", method = RequestMethod.GET)
     public List<Task> getTasks() {
         String userName = "user1";
-        User user = new User("user1","password1");
-        userService.saveUser(user);
+        //        User user = new User("user1","password1");
+        //        userService.saveUser(user);
 
         return taskService.getTasks(userName);
     }

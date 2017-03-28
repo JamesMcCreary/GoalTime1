@@ -50,8 +50,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-        jdbcAuthentication().dataSource(dataSource)
+        auth
+        .userDetailsService(userDetailsService);
+        auth.jdbcAuthentication().dataSource(dataSource)
         .usersByUsernameQuery("select username,password, enabled from users where username=?")
         .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
 
@@ -72,13 +73,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.httpBasic().and()
         .authorizeRequests()
-        .antMatchers("/").permitAll()
-        .antMatchers("/home").permitAll()
-        .antMatchers("/signup").permitAll()
-        .antMatchers("/signin").permitAll()
-        .antMatchers("/addTask").hasRole("USER")
-        .antMatchers("/taskList").access("hasRole('ROLE_USER')")
+        .antMatchers("/addTask").access("hasRole('ROLE_ADMIN')")
+        .antMatchers("/taskList").permitAll()/*.access("hasRole('ROLE_ADMIN')")*/
+        //.antMatchers("/").permitAll()
+        .antMatchers("/home").access("hasRole('ROLE_ADMIN')")
+        .antMatchers("/signup").access("hasRole('ROLE_ADMIN')")
+        .antMatchers("/signin").access("hasRole('ROLE_ADMIN')")
+        .and()
+        .formLogin().loginPage("/login")
+        .usernameParameter("username").passwordParameter("password")
         .and().csrf().disable();
+
+
 
 
         //                .antMatchers("/login").permitAll()
